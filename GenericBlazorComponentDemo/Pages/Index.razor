@@ -1,0 +1,40 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>A generic list of @nameof(Person) and @nameof(Messages)</h1>
+
+<GenericDataList Data=@People Collection=@Messages T="Person" U="string">
+
+    <ChildContent1>
+        @context.Name
+        @context.Email
+        @context.Age
+    </ChildContent1>
+
+    <ChildContent2>
+        @context
+    </ChildContent2>
+    
+</GenericDataList>
+
+@code {
+    private IEnumerable<Person> People;
+    private IEnumerable<string> Messages;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        People = new Person[]
+        {
+              new Person { Name = "Bob", Email = "Bob@Bob.com", Age = 22 },
+              new Person { Name = "Mike", Email = "Mike@Mike.com", Age = 42 },
+              new Person { Name = "Tim", Email = "Time@Time.com", Age = 62 },
+        };
+
+        Messages = new string[]
+        {
+            "Hello", "How are you", "Sup y'all", "Watcha doin"
+        };
+    }
+}

@@ -1,0 +1,35 @@
+﻿@typeparam T
+@typeparam U
+
+<ul>
+
+    @foreach (T item in Data ?? Array.Empty<T>())
+    {
+        <li>@ChildContent1(item)</li>
+    }
+
+</ul>
+
+<ul>
+
+    @foreach (U elem in Collection ?? Array.Empty<U>())
+    {
+            <li>@ChildContent2(elem)</li>
+    }
+
+</ul>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<T> Data { get; set; }
+
+    [Parameter]
+    public IEnumerable<U> Collection { get; set; }
+
+    [Parameter]
+    public RenderFragment<T> ChildContent1 { get; set; }
+
+    [Parameter]
+    public RenderFragment<U> ChildContent2 { get; set; }
+}
